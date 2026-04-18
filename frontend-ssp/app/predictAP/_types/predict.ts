@@ -4,13 +4,12 @@ export type SelectOption = {
 };
 
 export type PredictionResult = {
-  persistence_score?: number | string;
-  persistence_label?: string;
+  predicted_gpa?: number | string;
+  predicted_gpa_label?: string;
 } | null;
 
 export type PredictPayload = {
   firstTermGpa: number;
-  secondTermGpa: number;
   firstLanguage: number;
   mathScore: number;
   hsAverage: number;

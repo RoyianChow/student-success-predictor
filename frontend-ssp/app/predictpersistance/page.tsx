@@ -10,6 +10,8 @@ import type { PredictionResult } from "./_types/predict";
 export default function PredictPage() {
   const [firstTermGpa, setFirstTermGpa] = useState(2.0);
   const [secondTermGpa, setSecondTermGpa] = useState(2.0);
+  const [mathScore, setMathScore] = useState(25.0);
+  const [hsAverage, setHsAverage] = useState(50.0);
 
   const [firstLanguage, setFirstLanguage] = useState(1);
   const [funding, setFunding] = useState(1);
@@ -36,6 +38,8 @@ export default function PredictPage() {
         firstTermGpa,
         secondTermGpa,
         firstLanguage,
+        mathScore,
+        hsAverage,
         funding,
         school,
         fastTrack,
@@ -80,6 +84,10 @@ export default function PredictPage() {
             setFirstTermGpa={setFirstTermGpa}
             secondTermGpa={secondTermGpa}
             setSecondTermGpa={setSecondTermGpa}
+            mathScore={mathScore}
+            setMathScore={setMathScore}
+            hsAverage={hsAverage}
+            setHsAverage={setHsAverage}
             firstLanguage={firstLanguage}
             setFirstLanguage={setFirstLanguage}
             funding={funding}
@@ -110,6 +118,8 @@ export default function PredictPage() {
             result={result}
             firstTermGpa={firstTermGpa}
             secondTermGpa={secondTermGpa}
+            mathScore={mathScore}
+            hsAverage={hsAverage}
             firstLanguage={firstLanguage}
             funding={funding}
             school={school}

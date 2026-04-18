@@ -6,11 +6,8 @@ type PredictionSummaryProps = {
   result: PredictionResult;
 
   firstTermGpa: number;
-  secondTermGpa: number;
-
   mathScore: number;
   hsAverage: number;
-
   firstLanguage: number;
   funding: number;
   school: number;
@@ -29,7 +26,6 @@ export function PredictionSummary({
   loading,
   result,
   firstTermGpa,
-  secondTermGpa,
   mathScore,
   hsAverage,
   firstLanguage,
@@ -43,11 +39,9 @@ export function PredictionSummary({
   ageGroup,
   englishGrade,
 }: PredictionSummaryProps) {
-  const score =
-    result?.persistence_score !== undefined
-      ? Number(result.persistence_score)
-      : null;
-  
+  const predictedGpa =
+    result?.predicted_gpa !== undefined ? Number(result.predicted_gpa) : null;
+
   const firstLanguageLabel =
     options.firstLanguage.find((item) => item.value === firstLanguage)?.label ??
     firstLanguage;
@@ -82,10 +76,18 @@ export function PredictionSummary({
   const englishLabel =
     options.englishGrade.find((item) => item.value === englishGrade)?.label ??
     englishGrade;
-
   
-  const isAtRisk =
-    result?.persistence_label?.toLowerCase().includes("risk") ?? false;
+  const getGpaColor = () => {
+  if (predictedGpa === null) return "from-slate-400 to-slate-500";
+
+  if (predictedGpa < 2.0) {
+    return "from-red-600 to-red-700";
+  } else if (predictedGpa < 3.0) {
+    return "from-yellow-500 to-yellow-600";
+  } else {
+    return "from-emerald-600 to-teal-600";
+  }
+};
 
   return (
     <aside className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -94,7 +96,7 @@ export function PredictionSummary({
           Prediction Summary
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Your persistence result will appear here after submission.
+          Your academic performance result will appear here after submission.
         </p>
       </div>
 
@@ -113,34 +115,20 @@ export function PredictionSummary({
       {result && !loading && (
         <div className="space-y-5">
           <div
-            className={`rounded-2xl p-6 text-white shadow-sm bg-linear-to-r ${
-              isAtRisk
-                ? "from-red-600 to-rose-500"
-                : "from-emerald-600 to-teal-600"
-            }`}
-          >
-            <p
-              className={`text-sm font-medium ${
-                isAtRisk ? "text-red-100" : "text-emerald-100"
-              }`}
+              className={`rounded-2xl bg-gradient-to-r ${getGpaColor()} p-6 text-white shadow-sm`}
             >
-              Persistence Prediction
-            </p>
-
-            <p className="mt-2 text-3xl font-bold">
-              {result?.persistence_label ?? "Unknown"}
-            </p>
-
-            {score !== null && (
-              <p
-                className={`mt-2 text-sm ${
-                  isAtRisk ? "text-red-100" : "text-emerald-100"
-                }`}
-              >
-                Model score: {score.toFixed(3)}
+              <p className="text-sm font-medium text-white/80">
+                Academic Performance Prediction
               </p>
-            )}
-          </div>
+
+              <p className="mt-2 text-3xl font-bold">
+                {predictedGpa !== null ? predictedGpa.toFixed(2) : "Unknown"}
+              </p>
+
+              <p className="mt-2 text-sm text-white/80">
+                Predicted Second Term GPA
+              </p>
+            </div>
 
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -154,15 +142,12 @@ export function PredictionSummary({
               </div>
 
               <div className="flex items-center justify-between">
-                <span>Second Term GPA</span>
-                <span className="font-semibold">{secondTermGpa}</span>
-              </div>
-               <div className="flex items-center justify-between">
                 <span>Math Score</span>
                 <span className="font-semibold">{mathScore}</span>
               </div>
-               <div className="flex items-center justify-between">
-                <span>High School Average </span>
+
+              <div className="flex items-center justify-between">
+                <span>High School Average</span>
                 <span className="font-semibold">{hsAverage}</span>
               </div>
 

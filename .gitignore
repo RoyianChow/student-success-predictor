@@ -1,1 +1,3 @@
-frontend-ssp
+frontend-ssp/.next
+frontend-ssp/node_modules
+frontend-ssp/.env.local

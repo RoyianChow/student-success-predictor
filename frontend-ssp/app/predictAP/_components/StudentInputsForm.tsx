@@ -5,16 +5,10 @@ import { options } from "../_data/predict-options";
 type StudentInputsFormProps = {
   firstTermGpa: number;
   setFirstTermGpa: (value: number) => void;
-
-  secondTermGpa: number;
-  setSecondTermGpa: (value: number) => void;
-
   mathScore: number;
   setMathScore: (value: number) => void;
-
   hsAverage: number;
   setHsAverage: (value: number) => void;
-
   firstLanguage: number;
   setFirstLanguage: (value: number) => void;
 
@@ -57,8 +51,6 @@ export function StudentInputsForm({
   setMathScore,
   hsAverage,
   setHsAverage,
-  secondTermGpa,
-  setSecondTermGpa,
   firstLanguage,
   setFirstLanguage,
   funding,
@@ -90,11 +82,11 @@ export function StudentInputsForm({
           Student Inputs
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Enter all features required by the persistence model.
+          Enter all features required by the academic performance model.
         </p>
       </div>
 
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <SliderField
           label="First Term GPA"
           description="Student GPA from the first academic term."
@@ -104,35 +96,24 @@ export function StudentInputsForm({
           step={0.1}
           onChange={setFirstTermGpa}
         />
-
-        <SliderField
-          label="Second Term GPA"
-          description="Student GPA from the second academic term."
-          value={secondTermGpa}
-          min={0}
-          max={4.5}
-          step={0.1}
-          onChange={setSecondTermGpa}
-        />
         <SliderField
           label="Math Score"
-          description="Student math score."
+          description="Math score associated with the student record."
           value={mathScore}
           min={0}
           max={50}
-          step={1}
+          step={0.1}
           onChange={setMathScore}
         />
         <SliderField
           label="High School Average"
-          description="Student's average grade in high school."
+          description="Average grade from the student's high school education."
           value={hsAverage}
           min={0}
           max={100}
-          step={1}
+          step={0.1}
           onChange={setHsAverage}
-        />
-
+        />  
         <SelectField
           label="First Language"
           description="Student first language category."
@@ -212,15 +193,16 @@ export function StudentInputsForm({
           options={options.englishGrade}
           onChange={setEnglishGrade}
         />
-
-        <button
-          onClick={handlePredict}
-          disabled={loading}
-          className="w-full rounded-2xl bg-slate-900 px-6 py-4 text-base font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
-        >
-          {loading ? "Generating Prediction..." : "Predict Persistence"}
-        </button>
-      </div>
+        </div>
+        <div className="mt-6">
+          <button
+            onClick={handlePredict}
+            disabled={loading}
+            className="w-full rounded-2xl bg-slate-900 px-6 py-4 text-base font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {loading ? "Generating Prediction..." : "Predict Academic Performance"}
+          </button>
+        </div>
 
       {error && (
         <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">

@@ -6,6 +6,9 @@ export type PersistencePayload = {
   funding: number;
   school: number;
 
+  mathScore: number;
+  hsAverage: number;
+
   fastTrack: number;
   coop: number;
   residency: number;
@@ -16,12 +19,7 @@ export type PersistencePayload = {
   englishGrade: number;
 };
 
-export type AcademicPerformancePayload = {
-  hsAverage: number;
-  mathScore: number;
-  englishGrade: number;
-  firstTermGpa: number;
-};
+ 
 
 export async function predictPersistence(data: PersistencePayload) {
   const res = await fetch("http://localhost:5001/predict-persistence", {
@@ -40,6 +38,24 @@ export async function predictPersistence(data: PersistencePayload) {
 
   return result;
 }
+
+export type AcademicPerformancePayload = {
+  firstTermGpa: number;
+  mathScore: number;
+  hsAverage: number;
+  firstLanguage: number;
+  funding: number;
+  school: number;
+
+  fastTrack: number;
+  coop: number;
+  residency: number;
+
+  gender: number;
+  prevEducation: number;
+  ageGroup: number;
+  englishGrade: number;
+};
 
 export async function predictAcademicPerformance(
   data: AcademicPerformancePayload

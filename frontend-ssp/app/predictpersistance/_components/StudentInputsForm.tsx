@@ -90,11 +90,11 @@ export function StudentInputsForm({
           Student Inputs
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Enter all features required by the persistence model.
+          Enter all features required by the academic persistence model.
         </p>
       </div>
 
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <SliderField
           label="First Term GPA"
           description="Student GPA from the first academic term."
@@ -212,15 +212,18 @@ export function StudentInputsForm({
           options={options.englishGrade}
           onChange={setEnglishGrade}
         />
-
-        <button
+   </div>
+   <div className="py-4">
+<button
           onClick={handlePredict}
           disabled={loading}
           className="w-full rounded-2xl bg-slate-900 px-6 py-4 text-base font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? "Generating Prediction..." : "Predict Persistence"}
         </button>
-      </div>
+   </div>
+        
+   
 
       {error && (
         <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">

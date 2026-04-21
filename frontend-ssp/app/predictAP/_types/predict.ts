@@ -3,10 +3,6 @@ export type SelectOption = {
   value: number;
 };
 
-export type PredictionResult = {
-  predicted_gpa?: number | string;
-  predicted_gpa_label?: string;
-} | null;
 
 export type PredictPayload = {
   firstTermGpa: number;
@@ -23,3 +19,16 @@ export type PredictPayload = {
   ageGroup: number;
   englishGrade: number;
 };
+
+export type PredictionResult =
+  | {
+      prediction?: number;
+      predictedGpa?: number;
+      predicted_gpa_label?: string;
+      predicted_gpa?: number;
+      probability?: number;
+      confidence?: number;
+      error?: string;
+      message?: string;
+    }
+  | null;

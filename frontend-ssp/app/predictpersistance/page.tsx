@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { predictPersistence } from "@/app/lib/api";
+import { ModelDetails } from "./_components/ModelDetails";
 
 import { StudentInputsForm } from "./_components/StudentInputsForm";
 import { PredictionSummary } from "./_components/PredictionSummary";
@@ -69,16 +70,16 @@ export default function PredictPage() {
           </div>
 
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-950">
-            Predict Student Persistence
+            Predict Persistence
           </h1>
 
           <p className="mt-3 max-w-2xl text-base text-slate-600">
-            Enter the student details used by the persistence model to estimate
-            whether a student is likely to persist.
+            Enter the student details used by the academic persistence model to estimate
+            the student’s likelihood of persisting in their studies.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="mx-auto max-w-7xl space-y-6">
           <StudentInputsForm
             firstTermGpa={firstTermGpa}
             setFirstTermGpa={setFirstTermGpa}
@@ -121,6 +122,22 @@ export default function PredictPage() {
             mathScore={mathScore}
             hsAverage={hsAverage}
             firstLanguage={firstLanguage}
+            funding={funding}
+            school={school}
+            fastTrack={fastTrack}
+            coop={coop}
+            residency={residency}
+            gender={gender}
+            prevEducation={prevEducation}
+            ageGroup={ageGroup}
+            englishGrade={englishGrade}
+          />
+          <ModelDetails
+            result={result}
+            firstTermGpa={firstTermGpa}
+            firstLanguage={firstLanguage}
+            mathScore={mathScore}
+            hsAverage={hsAverage}
             funding={funding}
             school={school}
             fastTrack={fastTrack}

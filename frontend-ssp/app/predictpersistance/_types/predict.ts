@@ -4,8 +4,16 @@ export type SelectOption = {
 };
 
 export type PredictionResult = {
+  prediction?: number;
+  predictedClass?: number;
+  predicted_class?: number;
   persistence_score?: number | string;
   persistence_label?: string;
+  probability?: number;
+  confidence?: number;
+  risk?: number;
+  error?: string;
+  message?: string;
 } | null;
 
 export type PredictPayload = {

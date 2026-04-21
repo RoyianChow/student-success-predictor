@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { predictAcademicPerformance } from "@/app/lib/api";
-
+import { ModelDetails } from "./_components/modelDetails";
 import { StudentInputsForm } from "./_components/StudentInputsForm";
 import { PredictionSummary } from "./_components/PredictionSummary";
 import type { PredictionResult } from "./_types/predict";
@@ -110,6 +110,23 @@ export default function PredictAPPage() {
 
           <PredictionSummary
             loading={loading}
+            result={result}
+            firstTermGpa={firstTermGpa}
+            mathScore={mathScore}
+            hsAverage={hsAverage}
+            firstLanguage={firstLanguage}
+            funding={funding}
+            school={school}
+            fastTrack={fastTrack}
+            coop={coop}
+            residency={residency}
+            gender={gender}
+            prevEducation={prevEducation}
+            ageGroup={ageGroup}
+            englishGrade={englishGrade}
+          />
+
+          <ModelDetails
             result={result}
             firstTermGpa={firstTermGpa}
             mathScore={mathScore}

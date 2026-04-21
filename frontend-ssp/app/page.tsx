@@ -34,6 +34,7 @@ export default function HomePage() {
           >
             Predict Academic Performance
           </a>
+    
         </div>
 
         {/* Footer */}
